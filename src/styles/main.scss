@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&family=Playfair+Display&display=swap');
+
 
 *,
 *::after,
@@ -5,6 +7,12 @@
   padding: 0;
   margin: 0;
 }
+
+body {
+  font-family: 'Playfair Display', serif;
+}
+
+
 
 a {
   color: black;
@@ -19,6 +27,19 @@ ul {
   justify-content: center;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: bisque;
+  padding: 1rem 0;
+}
+
 #logo {
   width: 50px;
+}
+
+.center-txt {
+  text-align: center;
 }
