@@ -24,7 +24,7 @@ ul {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -38,6 +38,32 @@ footer {
 
 .center-txt {
   text-align: center;
+}
+
+.item-image {
+  width: auto;
+}
+
+#items {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+#items li {
+  display: flex;
+  flex-direction: column;
+}
+#items li a {
+  margin: 0.5rem 0;
+  align-self: center;
+  border: 1px solid black;
+  padding: 2px;
+  box-shadow: 3px 3px;
+}
+
+.name-like {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */
