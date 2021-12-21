@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif&family=Playfair+Display&display=swap');
 
-
 *,
 *::after,
 *::before {
@@ -11,8 +10,6 @@
 body {
   font-family: 'Playfair Display', serif;
 }
-
-
 
 a {
   color: black;
@@ -27,13 +24,18 @@ ul {
   justify-content: center;
 }
 
+header {
+  margin-bottom: 1rem;
+}
+
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: bisque;
   padding: 1rem 0;
+  margin-top: 1rem;
 }
 
 #logo {
@@ -50,8 +52,9 @@ footer {
 
 #items {
   display: grid;
-  grid-template-columns: auto auto auto;
-  
+  margin-top: 4rem;
+  grid-template-columns: 1fr;
+
   li {
     display: flex;
     flex-direction: column;
@@ -65,8 +68,16 @@ footer {
     }
   }
 }
+
+.name-like {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .popup {
-  background-color: rgba($color: #ffffff, $alpha: 0.8);
+  display: none;
+  background-color: rgba($color: #fff, $alpha: 0.8);
   padding: 1rem;
   position: absolute;
   top: 0;
@@ -84,7 +95,7 @@ footer {
 
 .popup_container {
   background-color: rgba(7, 6, 6, 0.85);
-  color: #ffffff;
+  color: #fff;
   height: 90vh;
   display: flex;
   flex-direction: column;
@@ -94,20 +105,25 @@ footer {
   ul {
     flex-direction: column;
     margin-top: 2rem;
+
     * {
       display: block;
     }
   }
 }
 
-.name-like {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+#popup-title {
+  color: brown;
+}
+
 .popup_title-sub {
   text-decoration: underline wavy;
   text-align: center;
 }
+
+#popup-idbm {
+  text-align: center;
+  margin-top: 1rem;
 }
 
 #popup-summary p {
@@ -117,4 +133,18 @@ footer {
 
 #popup-img {
   margin: 2.5rem;
+}
+
+@media (min-width: 632px) {
+  #items {
+    grid-template-columns: 1fr 1fr;
+    margin: 4rem 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #items {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 4rem 2rem;
+  }
 }

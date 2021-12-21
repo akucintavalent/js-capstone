@@ -1,33 +1,38 @@
 import './styles/main.css';
 import logo from './images/logo.png';
 
-import './popup.js';
-
-
-
+import showPopup from './popup.js';
 
 window.onload = () => {
   document.getElementById('logo').src = logo;
 
-  (async function () {
+  async function run() {
     const hiddenLiEl = document.querySelector('#items li');
-    for (let i = 1; i <= 20; i += 1) {
+    let listMovie = await fetch('https://api.tvmaze.com/shows/1/episodes');
+    listMovie = await listMovie.json();
+    listMovie.forEach((movie, index) => {
       const {
         name,
         image: { medium },
-        rating: { average },
-      } = await fetch(`https://api.tvmaze.com/episodes/${i}`)
-        .then((response) => response.json());
+      } = movie;
       const newLiEl = hiddenLiEl.cloneNode(true);
       newLiEl.querySelector('.item-image').src = medium;
       newLiEl.querySelector('.name').innerText = name;
+      newLiEl.querySelector('.item_detail').id = index + 1;
       document.getElementById('items').appendChild(newLiEl);
-    }
+    });
     hiddenLiEl.style.display = 'none';
-
-    Array.from(document.getElementsByClassName('like-btn')).forEach((likeBtn) => likeBtn.addEventListener('click', function () {
+    Array.from(document.getElementsByClassName('like-btn')).forEach((likeBtn) => likeBtn.addEventListener('click', () => {
       this.classList.toggle('fas');
       this.classList.toggle('far');
     }));
-  })();
+    const detailBtns = document.querySelectorAll('.item_detail');
+    detailBtns.forEach((detail) => {
+      detail.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPopup(detail.id);
+      });
+    });
+  }
+  run();
 };
