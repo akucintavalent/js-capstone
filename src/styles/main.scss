@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif&family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,300,400");
 
 *,
 *::after,
@@ -59,7 +59,7 @@ textarea {
   display: block;
 }
 
-textarea, 
+textarea,
 input,
 button {
   margin-top: 1em;
@@ -131,13 +131,14 @@ summary {
 }
 
 .popup_container {
-  background-color: fff;
+  background-color: #fff;
   color: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 4rem;
   min-height: calc(100vh - 6rem);
+
   ul {
     flex-direction: column;
     margin-top: 2rem;
@@ -162,11 +163,6 @@ summary {
   margin-top: 1rem;
 }
 
-#popup-summary p {
-  margin: 2rem auto;
-  width: 70%;
-}
-
 #popup-img {
   margin: 2.5rem;
 }
@@ -188,19 +184,31 @@ summary {
   padding: 1em;
   border-bottom: 1px solid black;
   width: 80%;
+
   span {
     width: 25%;
   }
+
   span:nth-of-type(1) {
     width: 10%;
     color: blueviolet;
   }
+
   p {
     width: 50%;
   }
 }
 
+#popup-summary p {
+  margin: 2rem auto;
+  width: 70%;
+}
+
 #empty-comment {
+  display: none;
+}
+
+#items li:nth-of-type(1) {
   display: none;
 }
 

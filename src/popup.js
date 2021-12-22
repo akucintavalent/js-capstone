@@ -12,7 +12,7 @@ const userNameElement = document.getElementById('name');
 const insightsElement = document.getElementById('insights');
 const commentBtn = document.getElementById('comment-btn');
 const form = document.querySelector('.form');
-const showThanks= document.querySelector('.show-thanks');
+const showThanks = document.querySelector('.show-thanks');
 
 const baseUrl = 'https://api.tvmaze.com/episodes/';
 const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/tkXsqcuViZTSE1UznPEd/comments';
@@ -83,7 +83,6 @@ export default async function showDetails(item) {
   form.style.display = 'flex';
   showThanks.style.display = 'none';
 
-
   if (comments.error) {
     commentNumber.innerText = '0';
     emptyComment.style.display = 'block';
@@ -91,7 +90,7 @@ export default async function showDetails(item) {
     showComment(name);
   }
 
-  commentBtn.addEventListener('click', async(e) => {
+  commentBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     const userName = userNameElement.value;
     const insights = insightsElement.value;
@@ -106,10 +105,9 @@ export default async function showDetails(item) {
     insightsElement.value = '';
     form.style.display = 'none';
     showThanks.style.display = 'block';
-    setTimeout(()=> {
+    setTimeout(() => {
       showThanks.style.display = 'none';
-    }, 5000)
-
+    }, 5000);
   });
 }
 
@@ -118,5 +116,3 @@ popupClose.addEventListener('click', () => {
 
   popup.style.display = 'none';
 });
-
-

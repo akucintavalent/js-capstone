@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=PT+Serif&family=Playfair+Display&display=swap");
+@font-face {
+  font-family: "PlayFair Display";
+  src: url("https://fonts.googleapis.com/css2?family=PT+Serif&family=Playfair+Display&display=swap");
+}
+
 *,
 *::after,
 *::before {
@@ -87,10 +91,12 @@ summary {
   margin-top: 4rem;
   grid-template-columns: 1fr;
 }
+
 #items li {
   display: flex;
   flex-direction: column;
 }
+
 #items li a {
   margin: 0.5rem 0;
   align-self: center;
@@ -126,7 +132,7 @@ summary {
 }
 
 .popup_container {
-  background-color: fff;
+  background-color: #fff;
   color: #000;
   display: flex;
   flex-direction: column;
@@ -134,10 +140,12 @@ summary {
   margin-top: 4rem;
   min-height: calc(100vh - 6rem);
 }
+
 .popup_container ul {
   flex-direction: column;
   margin-top: 2rem;
 }
+
 .popup_container ul *:not(.comment) {
   display: block;
 }
@@ -154,11 +162,6 @@ summary {
 #popup-idbm {
   text-align: center;
   margin-top: 1rem;
-}
-
-#popup-summary p {
-  margin: 2rem auto;
-  width: 70%;
 }
 
 #popup-img {
@@ -183,18 +186,30 @@ summary {
   border-bottom: 1px solid black;
   width: 80%;
 }
+
 .comment span {
   width: 25%;
 }
+
 .comment span:nth-of-type(1) {
   width: 10%;
   color: blueviolet;
 }
+
 .comment p {
   width: 50%;
 }
 
+#popup-summary p {
+  margin: 2rem auto;
+  width: 70%;
+}
+
 #empty-comment {
+  display: none;
+}
+
+#items li:nth-of-type(1) {
   display: none;
 }
 
@@ -204,11 +219,10 @@ summary {
     margin: 4rem 1rem;
   }
 }
+
 @media (min-width: 1024px) {
   #items {
     grid-template-columns: 1fr 1fr 1fr;
     margin: 4rem 2rem;
   }
 }
-
-/*# sourceMappingURL=main.css.map */

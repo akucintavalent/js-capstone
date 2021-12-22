@@ -26,6 +26,7 @@
         <div class="name-like">
           <p class="name">Space 1</p>
           <i class="like-btn far fa-heart"></i>
+          <p class="likes-count">4</p>
         </div>
         <a href="">Comments</a>
         <a class="item_detail" href="">Details</a>
@@ -43,10 +44,19 @@
       </ul>
       <details class="form">
         <summary>Add a comment</summary>
-        <input type="text" name="name" id="name" placeholder="Your name">
-        <textarea name="insights" id="insights" cols="15" rows="10" placeholder="Your insights"></textarea>
-        <button></button>
-      </>
+        <input type="text" name="name" id="name" placeholder="Your name" required>
+        <textarea name="insights" id="insights" cols="25" rows="3" placeholder="Your insights" required></textarea>
+        <button type="submit" id="comment-btn">Submit</button>
+      </details>
+      <div class="show-thanks">
+        Thank you for your comment ❤😊✅
+      </div>
+      <div class="comments">
+        <h3 class="comments_title">Comments (<span id="comment-number">0</span>)</h3>
+        <ul class="comment_list"> 
+          <li id="empty-comment">There is no comment.</li>
+        </ul>
+      </div>
     </div>
   </div>
   <footer class="center-txt"> Created by Furkan Denizhan and Bohdan Shcherbak under MIT license.</footer>
