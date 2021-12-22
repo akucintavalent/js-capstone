@@ -14,6 +14,7 @@ async function getDetails(item) {
 }
 
 export default async function showDetails(item = 1) {
+  document.body.style.overflow = 'hidden';
   const data = await getDetails(item);
   const {
     name, image: { medium: image },
