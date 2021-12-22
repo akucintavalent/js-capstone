@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import './styles/main.css';
 import logo from './images/logo.png';
 

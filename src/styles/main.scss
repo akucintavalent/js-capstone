@@ -5,6 +5,7 @@
 *::before {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -36,6 +37,38 @@ footer {
   background-color: bisque;
   padding: 1rem 0;
   margin-top: 1rem;
+}
+
+.form {
+  display: flex;
+  gap: 3em;
+  flex-direction: column;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.show-thanks {
+  display: none;
+  padding: 3rem;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+textarea {
+  display: block;
+}
+
+textarea, 
+input,
+button {
+  margin-top: 1em;
+  padding: 0.5em;
+  outline: none;
+}
+
+summary {
+  font-size: 1.5rem;
 }
 
 #logo {
@@ -77,13 +110,8 @@ footer {
 
 .popup {
   display: none;
-  background-color: rgba($color: #fff, $alpha: 0.8);
+  background-color: rgba($color: #fdfdfd, $alpha: 0.8);
   padding: 1rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .popup-close {
@@ -94,20 +122,27 @@ footer {
   font-size: xx-large;
 }
 
+.body-popup-show {
+  header,
+  main,
+  footer {
+    display: none;
+  }
+}
+
 .popup_container {
-  background-color: rgba(7, 6, 6, 0.85);
-  color: #fff;
-  height: 90vh;
+  background-color: fff;
+  color: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 4rem;
-
+  min-height: calc(100vh - 6rem);
   ul {
     flex-direction: column;
     margin-top: 2rem;
 
-    * {
+    *:not(.comment) {
       display: block;
     }
   }
@@ -136,7 +171,36 @@ footer {
   margin: 2.5rem;
 }
 
-#items li:first-child {
+.comments_title {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.comment_list {
+  width: 100vw;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  flex-direction: row;
+  padding: 1em;
+  border-bottom: 1px solid black;
+  width: 80%;
+  span {
+    width: 25%;
+  }
+  span:nth-of-type(1) {
+    width: 10%;
+    color: blueviolet;
+  }
+  p {
+    width: 50%;
+  }
+}
+
+#empty-comment {
   display: none;
 }
 
