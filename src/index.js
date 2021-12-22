@@ -23,8 +23,8 @@ window.onload = () => {
     });
     hiddenLiEl.style.display = 'none';
     Array.from(document.getElementsByClassName('like-btn')).forEach((likeBtn) => likeBtn.addEventListener('click', () => {
-      this.classList.toggle('fas');
-      this.classList.toggle('far');
+      likeBtn.classList.toggle('fas');
+      likeBtn.classList.toggle('far');
     }));
     const detailBtns = document.querySelectorAll('.item_detail');
     detailBtns.forEach((detail) => {
