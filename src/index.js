@@ -2,6 +2,7 @@ import './styles/main.css';
 import logo from './images/logo.png';
 
 import showPopup from './popup.js';
+import postData from './post-data.js';
 
 window.onload = () => {
   document.getElementById('logo').src = logo;
