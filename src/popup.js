@@ -30,4 +30,5 @@ export default async function showDetails(item = 1) {
 
 popupClose.addEventListener('click', () => {
   popup.style.display = 'none';
+  document.body.style.overflow = 'scroll';
 });
