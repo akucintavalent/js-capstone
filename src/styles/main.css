@@ -136,6 +136,10 @@ footer {
   margin: 2.5rem;
 }
 
+#items li:first-child {
+  display: none;
+}
+
 @media (min-width: 632px) {
   #items {
     grid-template-columns: 1fr 1fr;
