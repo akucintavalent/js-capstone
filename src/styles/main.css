@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Serif&family=Playfair+Display&display=swap");
+
 *,
 *::after,
 *::before {
@@ -54,10 +55,12 @@ footer {
   margin-top: 4rem;
   grid-template-columns: 1fr;
 }
+
 #items li {
   display: flex;
   flex-direction: column;
 }
+
 #items li a {
   margin: 0.5rem 0;
   align-self: center;
@@ -100,10 +103,12 @@ footer {
   align-items: center;
   margin-top: 4rem;
 }
+
 .popup_container ul {
   flex-direction: column;
   margin-top: 2rem;
 }
+
 .popup_container ul * {
   display: block;
 }
@@ -137,11 +142,10 @@ footer {
     margin: 4rem 1rem;
   }
 }
+
 @media (min-width: 1024px) {
   #items {
     grid-template-columns: 1fr 1fr 1fr;
     margin: 4rem 2rem;
   }
 }
-
-/*# sourceMappingURL=main.css.map */
