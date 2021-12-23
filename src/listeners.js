@@ -18,7 +18,7 @@ export async function commentButtonsListener() {
 
 export async function popupCommentBtnListener(name) {
   const commentBtn = document.getElementById('comment-btn');
-  const listenerFunction = async (e) => {
+  async function listenerFunction(e) {
     e.preventDefault();
 
     const userNameElement = document.getElementById('name');
@@ -33,27 +33,30 @@ export async function popupCommentBtnListener(name) {
       comment: insights,
     };
 
-    await postComments(commentObj);
-    await showPopupComment(name);
-    userNameElement.value = '';
-    insightsElement.value = '';
-    form.style.display = 'none';
-    showThanks.style.display = 'block';
-    setTimeout(() => {
-      showThanks.style.display = 'none';
-    }, 5000);
-  };
-
+    await postComments(commentObj).then(async () => {
+      await showPopupComment(name);
+      userNameElement.value = '';
+      insightsElement.value = '';
+      form.style.display = 'none';
+      showThanks.style.display = 'block';
+      setTimeout(() => {
+        showThanks.style.display = 'none';
+      }, 5000);
+    });
+  }
   commentBtn.addEventListener('click', listenerFunction);
 }
 
 export async function popupCloseListener() {
+  const commentList = document.getElementById('list-of-comments');
   const popup = document.querySelector('.popup');
   const popupClose = document.querySelector('.popup-close');
-  const listenerFunction = () => {
+  function listenerFunction(e) {
+    e.preventDefault();
+    commentList.innerHTML = '';
     document.body.classList.remove('body-popup-show');
     popup.style.display = 'none';
-  };
+  }
 
   popupClose.addEventListener('click', listenerFunction);
 }
@@ -62,7 +65,8 @@ export async function likeListener() {
   const likes = JSON.parse(localStorage.getItem('likes') || '{}');
 
   Array.from(document.getElementsByClassName('like-btn')).forEach((likeBtn, index) => {
-    const listenerFunction = async () => {
+    function listenerFunction(e) {
+      e.preventDefault();
       if (likes[index]) return;
 
       likes[index] = true;
@@ -73,7 +77,7 @@ export async function likeListener() {
 
       localStorage.setItem('likes', JSON.stringify(likes));
       postLike(index);
-    };
+    }
 
     likeBtn.addEventListener('click', listenerFunction);
   });

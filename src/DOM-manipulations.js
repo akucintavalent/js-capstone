@@ -18,6 +18,7 @@ export default async function showMoviesOnHomePage() {
     const {
       name,
       image: { medium },
+      id,
     } = movie;
     const movieSequence = index + 1;
 
@@ -25,7 +26,7 @@ export default async function showMoviesOnHomePage() {
     newLiEl.style.display = 'flex';
     newLiEl.querySelector('.item-image').src = medium;
     newLiEl.querySelector('.name').innerText = name;
-    newLiEl.querySelector('.item_comment').id = movieSequence;
+    newLiEl.querySelector('.item_comment').id = id;
 
     if (likesCounts[movieSequence]) {
       newLiEl.querySelector('.like-btn').classList.toggle('fas');
@@ -38,38 +39,38 @@ export default async function showMoviesOnHomePage() {
 }
 
 export async function showPopupComment(name) {
-  const commentList = document.querySelector('.comment_list');
+  const commentList = document.getElementById('list-of-comments');
   const commentNumber = document.getElementById('comment-number');
-  const comments = await getComments(name);
-
   commentList.innerHTML = '';
 
-  comments.forEach((commentItem, index) => {
-    const {
-      username,
-      comment,
-      creation_date: creationDate,
-    } = commentItem;
-    const commentSequence = index + 1;
+  await getComments(name).then((comments) => {
+    comments.forEach((commentItem, index) => {
+      const {
+        username,
+        comment,
+        creation_date: creationDate,
+      } = commentItem;
+      const commentSequence = index + 1;
 
-    const li = document.createElement('li');
-    li.classList.add('comment');
+      const li = document.createElement('li');
+      li.classList.add('comment');
 
-    const span = document.createElement('span');
-    span.innerText = `${username} : `;
+      const span = document.createElement('span');
+      span.innerText = `${username} : `;
 
-    const p = document.createElement('p');
-    p.innerText = comment;
+      const p = document.createElement('p');
+      p.innerText = comment;
 
-    const spanTwo = document.createElement('span');
-    spanTwo.innerText = creationDate;
+      const spanTwo = document.createElement('span');
+      spanTwo.innerText = creationDate;
 
-    li.appendChild(span);
-    li.appendChild(p);
-    li.appendChild(spanTwo);
+      li.appendChild(span);
+      li.appendChild(p);
+      li.appendChild(spanTwo);
 
-    commentList.insertAdjacentElement('beforeend', li);
-    commentNumber.innerText = commentSequence;
+      commentList.insertAdjacentElement('beforeend', li);
+      commentNumber.innerText = commentSequence;
+    });
   });
 }
 
@@ -80,34 +81,37 @@ export async function showPopupDetails(item) {
   const popupImdb = document.getElementById('popup-imdb');
   const popupSummary = document.getElementById('popup-summary');
   const emptyComment = document.getElementById('empty-comment');
-  const commentList = document.querySelector('.comment_list');
+  const commentList = document.getElementById('list-of-comments');
   const commentNumber = document.getElementById('comment-number');
   const form = document.querySelector('.form');
   const showThanks = document.querySelector('.show-thanks');
 
-  const data = await getPopupDetails(item);
-  const {
-    name, image: { medium: image },
-    rating: { average: imdb },
-    summary,
-  } = data;
-  const comments = await getComments(name);
+  await getPopupDetails(item).then(async (response) => {
+    const {
+      name, image: { medium: image },
+      rating: { average: imdb },
+      summary,
+    } = response;
 
-  document.body.classList.add('body-popup-show');
-  popup.style.display = 'block';
-  popupTitle.innerText = name;
-  popupImg.src = image;
-  popupImdb.innerText = imdb;
-  popupSummary.innerHTML = summary;
-  commentList.innerHTML = '';
-  form.style.display = 'flex';
-  showThanks.style.display = 'none';
+    document.body.classList.add('body-popup-show');
+    popup.style.display = 'block';
+    popupTitle.innerText = name;
+    popupImg.src = image;
+    popupImdb.innerText = imdb;
+    popupSummary.innerHTML = summary;
+    commentList.innerHTML = '';
+    form.style.display = 'flex';
+    showThanks.style.display = 'none';
+    popupCommentBtnListener(name);
 
-  if (comments.error) {
-    commentNumber.innerText = '0';
-    emptyComment.style.display = 'block';
-  } else {
-    showPopupComment(name);
-  }
-  popupCommentBtnListener(name);
+    await getComments(name).then((comments) => {
+      if (comments.error) {
+        commentNumber.innerText = '0';
+        emptyComment.style.display = 'block';
+        commentList.style.display = 'none';
+      } else {
+        showPopupComment(name);
+      }
+    });
+  });
 }

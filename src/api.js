@@ -36,6 +36,7 @@ export async function getListMovie() {
 }
 
 export async function getPopupDetails(item) {
+  console.log(item);
   const baseUrl = 'https://api.tvmaze.com/episodes/';
   let result = await fetch(`${baseUrl}${item}`);
 
@@ -45,8 +46,8 @@ export async function getPopupDetails(item) {
 }
 
 export async function getComments(id) {
-  const involvementUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/tkXsqcuViZTSE1UznPEd/comments';
-  let result = await fetch(`${involvementUrl}?item_id=${id}`);
+  const commentGettUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/tkXsqcuViZTSE1UznPEd/comments?item_id=${id}`;
+  let result = await fetch(commentGettUrl);
 
   result = await result.json();
 
