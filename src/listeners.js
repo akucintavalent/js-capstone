@@ -1,9 +1,9 @@
 /* eslint-disable linebreak-style */
-import { postComments, postLike } from './api';
+import { postComments, postLike } from './api.js';
 import {
   showPopupComment,
   showPopupDetails,
-} from './DOM-manipulations';
+} from './DOM-manipulations.js';
 
 export async function commentButtonsListener() {
   const commentBtns = document.querySelectorAll('.item_comment');
