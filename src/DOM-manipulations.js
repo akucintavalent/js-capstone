@@ -11,9 +11,11 @@ const { popupCommentBtnListener } = require('./listeners.js');
 
 export default async function showMoviesOnHomePage() {
   const hiddenLiEl = document.querySelector('#items li');
+  const moviesLink = document.getElementById('movies');
   const moviesListObj = await getListMovie();
   const likesCounts = await getLikeNumber();
 
+  moviesLink.innerText += ` (${moviesListObj.length})`;
   moviesListObj.forEach((movie, index) => {
     const {
       name,
