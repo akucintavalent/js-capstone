@@ -2,18 +2,20 @@
 import './styles/main.css';
 import logo from './images/logo.png';
 
-import showMoviesOnHomePage from './DOM-manipulations.js';
-import { commentButtonsListener, likeListener, popupCloseListener } from './listeners.js';
+import showMoviesOnHomePage from './js/DOM-manipulations.js';
+import {
+  commentButtonsListener,
+  likeListener, popupCloseListener,
+  popupCommentBtnListener,
+} from './js/listeners.js';
 
-window.onload = () => {
+window.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('logo').src = logo;
 
-  async function run() {
-    await showMoviesOnHomePage();
+  await showMoviesOnHomePage();
 
-    await likeListener();
-    await commentButtonsListener();
-    popupCloseListener();
-  }
-  run();
-};
+  await likeListener();
+  await commentButtonsListener();
+  popupCommentBtnListener();
+  popupCloseListener();
+});

@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import { postComments, postLike } from './api.js';
 import {
-  showPopupComment,
+  addCommentToList,
   showPopupDetails,
 } from './DOM-manipulations.js';
 
@@ -16,46 +16,67 @@ export async function commentButtonsListener() {
   });
 }
 
-export async function popupCommentBtnListener(name) {
-  const commentBtn = document.getElementById('comment-btn');
+export async function popupCommentBtnListener() {
+  const name = document.getElementById('popup-title').innerText;
+  const commentBtn = document.querySelector('#comment-btn');
   async function listenerFunction(e) {
     e.preventDefault();
-
     const userNameElement = document.getElementById('name');
-    const userName = userNameElement.value;
+    const username = userNameElement.value;
     const insightsElement = document.getElementById('insights');
-    const insights = insightsElement.value;
+    const comment = insightsElement.value;
     const form = document.querySelector('.form');
     const showThanks = document.querySelector('.show-thanks');
     const commentObj = {
       item_id: name,
-      username: userName,
-      comment: insights,
+      username,
+      comment,
     };
+    form.style.display = 'none';
+    showThanks.style.display = 'block';
 
-    await postComments(commentObj).then(async () => {
-      await showPopupComment(name);
+    postComments(commentObj).then(() => {
+      let commentList;
+      if (document.getElementById('comment-list-id')) {
+        commentList = document.getElementById('comment-list-id');
+      } else {
+        const commentContainer = document.querySelector('.comments');
+        commentList = document.createElement('ul');
+        commentList.id = 'comment-list-id';
+        commentContainer.appendChild(commentList);
+      }
+      const commentNumber = document.getElementById('comment-number');
+      const today = new Date();
+      const creationDate = `${today.getFullYear()}-${+today.getMonth() + 1}-${today.getDate()}`;
+      const emptyComment = document.getElementById('empty-comment');
+
+      emptyComment.style.display = 'none';
+      addCommentToList({
+        commentList,
+        comment,
+        username,
+        creationDate,
+      });
+      commentNumber.innerText = `${Number(commentNumber.innerText) + 1}`;
+
       userNameElement.value = '';
       insightsElement.value = '';
-      form.style.display = 'none';
-      showThanks.style.display = 'block';
-      setTimeout(() => {
-        showThanks.style.display = 'none';
-      }, 5000);
     });
   }
   commentBtn.addEventListener('click', listenerFunction);
 }
 
-export async function popupCloseListener() {
-  const commentList = document.getElementById('list-of-comments');
+export function popupCloseListener() {
   const popup = document.querySelector('.popup');
   const popupClose = document.querySelector('.popup-close');
   function listenerFunction(e) {
     e.preventDefault();
-    commentList.innerHTML = '';
+    const commentList = document.getElementById('comment-list-id');
+    const commentNumber = document.getElementById('comment-number');
+    commentNumber.innerText = '0';
     document.body.classList.remove('body-popup-show');
     popup.style.display = 'none';
+    commentList.remove();
   }
 
   popupClose.addEventListener('click', listenerFunction);
