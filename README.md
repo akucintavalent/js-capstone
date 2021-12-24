@@ -1,6 +1,10 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Leaderboard
+# JS capstone project
+
+In this JavaScript capstone project we built a web application based on an external API. The webapp has 2 user interfaces:
+- A home page showing a list of items (tv series episodes) that you can "like."
+- A popup window with more data about an item that you can use to comment on it.
 
 ![image](https://user-images.githubusercontent.com/87897753/146473048-760f81e2-4b03-40a3-ae2a-2a5966a6cb13.png)
 
