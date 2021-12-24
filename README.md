@@ -6,7 +6,8 @@ In this JavaScript capstone project we built a web application based on an exter
 - A home page showing a list of items (tv series episodes) that you can "like."
 - A popup window with more data about an item that you can use to comment on it.
 
-![image](https://user-images.githubusercontent.com/87897753/146473048-760f81e2-4b03-40a3-ae2a-2a5966a6cb13.png)
+![list of items](https://user-images.githubusercontent.com/87897753/147339309-fca36694-03c1-4ebb-9a00-d00d7cf401d3.png)
+![popup window](https://user-images.githubusercontent.com/87897753/147339583-35f5de75-c17f-4d2b-a977-82c0da86478b.png)
 
 ## Built With
 
