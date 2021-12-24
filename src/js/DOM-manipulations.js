@@ -7,8 +7,6 @@ import {
   getComments,
 } from './api.js';
 
-const { popupCommentBtnListener } = require('./listeners.js');
-
 export default async function showMoviesOnHomePage() {
   const hiddenLiEl = document.querySelector('#items li');
   const moviesListObj = await getListMovie();
@@ -38,39 +36,52 @@ export default async function showMoviesOnHomePage() {
   });
 }
 
-export async function showPopupComment(name) {
-  const commentList = document.getElementById('list-of-comments');
-  const commentNumber = document.getElementById('comment-number');
-  commentList.innerHTML = '';
+export function addCommentToList({
+  commentList,
+  username,
+  comment,
+  creationDate,
+}) {
+  const li = document.createElement('li');
+  li.classList.add('comment');
+  const span = document.createElement('span');
+  span.innerText = `${username} : `;
 
+  const p = document.createElement('p');
+  p.innerText = comment;
+
+  const spanTwo = document.createElement('span');
+  spanTwo.innerText = creationDate;
+
+  li.appendChild(span);
+  li.appendChild(p);
+  li.appendChild(spanTwo);
+  commentList.insertAdjacentElement('beforeend', li);
+}
+
+export async function showPopupComment(name) {
+  const commentContainer = document.querySelector('.comments');
+  const commentNumber = document.getElementById('comment-number');
   await getComments(name).then((comments) => {
-    comments.forEach((commentItem, index) => {
+    const commentList = document.createElement('ul');
+    commentList.id = 'comment-list-id';
+    commentList.innerHTML = '';
+    comments.forEach((commentItem) => {
       const {
         username,
         comment,
         creation_date: creationDate,
       } = commentItem;
-      const commentSequence = index + 1;
-
-      const li = document.createElement('li');
-      li.classList.add('comment');
-
-      const span = document.createElement('span');
-      span.innerText = `${username} : `;
-
-      const p = document.createElement('p');
-      p.innerText = comment;
-
-      const spanTwo = document.createElement('span');
-      spanTwo.innerText = creationDate;
-
-      li.appendChild(span);
-      li.appendChild(p);
-      li.appendChild(spanTwo);
-
-      commentList.insertAdjacentElement('beforeend', li);
-      commentNumber.innerText = commentSequence;
+      addCommentToList({
+        commentList,
+        username,
+        comment,
+        creationDate,
+      });
     });
+    commentNumber.innerText = comments.length || 0;
+
+    commentContainer.appendChild(commentList);
   });
 }
 
@@ -81,7 +92,6 @@ export async function showPopupDetails(item) {
   const popupImdb = document.getElementById('popup-imdb');
   const popupSummary = document.getElementById('popup-summary');
   const emptyComment = document.getElementById('empty-comment');
-  const commentList = document.getElementById('list-of-comments');
   const commentNumber = document.getElementById('comment-number');
   const form = document.querySelector('.form');
   const showThanks = document.querySelector('.show-thanks');
@@ -99,17 +109,15 @@ export async function showPopupDetails(item) {
     popupImg.src = image;
     popupImdb.innerText = imdb;
     popupSummary.innerHTML = summary;
-    commentList.innerHTML = '';
     form.style.display = 'flex';
     showThanks.style.display = 'none';
-    popupCommentBtnListener(name);
 
     await getComments(name).then((comments) => {
       if (comments.error) {
         commentNumber.innerText = '0';
         emptyComment.style.display = 'block';
-        commentList.style.display = 'none';
       } else {
+        emptyComment.style.display = 'none';
         showPopupComment(name);
       }
     });

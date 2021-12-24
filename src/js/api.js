@@ -27,7 +27,7 @@ export async function getLikeNumber() {
 }
 
 export async function getListMovie() {
-  const listMovieUrl = 'https://api.tvmaze.com/shows/1/episodes';
+  const listMovieUrl = 'https://api.tvmaze.com/shows';
   let listMovie = await fetch(listMovieUrl);
 
   listMovie = await listMovie.json();
@@ -36,8 +36,7 @@ export async function getListMovie() {
 }
 
 export async function getPopupDetails(item) {
-  console.log(item);
-  const baseUrl = 'https://api.tvmaze.com/episodes/';
+  const baseUrl = 'https://api.tvmaze.com/shows/';
   let result = await fetch(`${baseUrl}${item}`);
 
   result = await result.json();
