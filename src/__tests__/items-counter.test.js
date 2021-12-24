@@ -2,7 +2,7 @@ import mountDOM from 'jsdom-mount';
 import { readFileSync } from 'fs';
 import fetch from 'cross-fetch';
 
-import showMoviesOnHomePage from '../DOM-manipulations.js';
+import {showMoviesOnHomePage} from '../js/DOM-manipulations.js';
 
 const html = readFileSync('src/index.html', 'utf8');
 global.fetch = fetch;
