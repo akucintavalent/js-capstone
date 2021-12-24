@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>JS Capstone</title>
-  <script src="https://kit.fontawesome.com/c4f9b857f0.js" crossorigin="anonymous"></script>
-<script defer src="main.js"></script></head>
-<body>
-  <header>
+/**
+ * @jest-environment jsdom
+ */
+
+import fetch from 'cross-fetch';
+
+import showMoviesOnHomePage from '../js/DOM-manipulations.js';
+
+global.fetch = fetch;
+
+describe('test items counter', () => {
+  test('items counter should be 39', async () => {
+    document.body.innerHTML = `
+    <header>
     <ul>
       <li>
         <img src="#" id="logo" alt="movies logo">
@@ -22,14 +24,14 @@
   <main>
     <ul id="items">
       <li>
-        <img class="item-image" src="https://img.redro.pl/fototapety/spaceship-rocket-space-stars-background-space-background-galaxy-vector-illustration-eps10-700-214110858.jpg" alt="spaceship">
+        <img class="item-image" src="#" alt="spaceship">
         <div class="name-like">
           <p class="name">Space 1</p>
           <i class="like-btn far fa-heart"></i>
           <p class="likes-count">4</p>
         </div>
-        <a href="">Comments</a>
-        <a class="item_detail" href="">Details</a>
+        <a class="item_comment" href="">Comments</a>
+        <a class="item_detail" href="">Reserve</a>
       </li>
     </ul>
   </main>
@@ -53,12 +55,14 @@
       </div>
       <div class="comments">
         <h3 class="comments_title">Comments (<span id="comment-number">0</span>)</h3>
-        <ul class="comment_list"> 
-          <li id="empty-comment">There is no comment.</li>
-        </ul>
+        <span id="empty-comment">There is no comment.</span>
       </div>
     </div>
   </div>
   <footer class="center-txt"> Created by Furkan Denizhan and Bohdan Shcherbak under MIT license.</footer>
-</body>
-</html>
+    `;
+    await showMoviesOnHomePage();
+    const moviesLink = document.getElementById('movies');
+    expect(moviesLink.innerText).toContain('(240)');
+  });
+});
