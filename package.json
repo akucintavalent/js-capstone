@@ -1,0 +1,55 @@
+{
+  "name": "webpack-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll --coverage ",
+    "build": "webpack",
+    "start": "webpack serve --open",
+    "style": "sass --watch src/styles:src/styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akucintavalent/webpack-exercise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akucintavalent/webpack-exercise/issues"
+  },
+  "homepage": "https://github.com/akucintavalent/webpack-exercise#readme",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.16.5",
+    "babel-eslint": "^10.1.0",
+    "css-loader": "^6.5.1",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.3",
+    "hint": "^6.1.9",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.4.5",
+    "jsdom-mount": "^0.1.0",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.45.1",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.21.0",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  },
+  "dependencies": {
+    "cross-fetch": "^3.1.4",
+    "lodash": "^4.17.21",
+    "node-fetch": "^3.1.0"
+  }
+}
