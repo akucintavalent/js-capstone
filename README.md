@@ -25,7 +25,7 @@ In this JavaScript capstone project we built a web application based on an exter
 
 ## 👤 **Furkan Denizhan**
 
-- GitHub: [nevisende](https://github.com/nevisende)
+- GitHub: [@nevisende](https://github.com/nevisende)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/furkan-denizhan/)
 
 ## 👤 **Bohdan Shcherbak**
