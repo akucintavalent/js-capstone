@@ -22,7 +22,12 @@ In this JavaScript capstone project we built a web application based on an exter
  - `npm run build`
  - Open `dist/index.html` or run `npm start`
 
-## 👤 Bohdan Shcherbak
+## 👤 **Furkan Denizhan**
+
+- GitHub: [nevisende](https://github.com/nevisende)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/furkan-denizhan/)
+
+## 👤 **Bohdan Shcherbak**
 
 - GitHub: [@akucintavalent](https://github.com/akucintavalent)
 - Twitter: [@ibodi828](https://twitter.com/ibodi828)
