@@ -3,7 +3,7 @@
 # JS capstone project
 
 In this JavaScript capstone project we built a web application based on an external API. The webapp has 2 user interfaces:
-- A home page showing a list of items (tv series episodes) that you can "like."
+- A home page showing a list of items (movies) that you can "like."
 - A popup window with more data about an item that you can use to comment on it.
 
 <img width="1280" alt="Zrzut ekranu 2022-01-27 o 18 22 35" src="https://user-images.githubusercontent.com/87897753/151401657-226499d9-6c3b-4d74-bd81-841737fbc4f9.png">
